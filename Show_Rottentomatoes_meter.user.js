@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Show Rottentomatoes meter
-// @description Show Rotten Tomatoes score on imdb.com, metacritic.com, letterboxd.com, BoxOfficeMojo, serienjunkies.de, Amazon, tv.com, Google Play, allmovie.com, Wikipedia, themoviedb.org, movies.com, tvmaze.com, tvguide.com, followshows.com, thetvdb.com, tvnfo.com
-// @namespace   cuzi
-// @updateURL   https://openuserjs.org/meta/cuzi/Show_Rottentomatoes_meter.meta.js
+// @description Show Rotten Tomatoes score on save.tv video archive pages
+// @namespace   ElLutzo
+// @updateURL   https://openuserjs.org/meta/ElLutzo/Show_Rottentomatoes_meter.meta.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -13,7 +13,7 @@
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 // @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
 // @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
-// @version     19
+// @version     1
 // @connect     www.rottentomatoes.com
 // @include     https://www.save.tv/*
 // ==/UserScript==
