@@ -81,6 +81,7 @@
 // @include     http://www.cc.com/*
 // @include     https://www.tvhoard.com/*
 // @include     https://www.amc.com/*
+// @include     https://www.save.tv/*
 // ==/UserScript==
 
 
@@ -788,6 +789,16 @@ var sites = {
       condition : () => document.location.pathname.split("/").length === 3 && document.querySelector("meta[property='og:type']") && document.querySelector("meta[property='og:type']").content == 'tv_show',
       type : 'tv',
       data : () => document.querySelector("meta[property='og:title']").content
+    }]
+  },
+  'save.tv' : {
+    host : ['save.tv'],
+    condition : () => document.location.pathname.startsWith("/STV/M/obj/archive/"),
+    products : [
+    {
+      condition : () => document.location.pathname.startsWith("/STV/M/obj/archive/"),
+      type : 'movie',
+      data : () => document.querySelector("span[data-bind='text:OrigTitle']").textContent
     }]
   },
 };
