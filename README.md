@@ -7,7 +7,7 @@ General information about userscripts and how to use them can be found at [openu
 
 This is a fork of https://github.com/cvzi/Rottentomatoes-userscript
 
-[**Click here for install**](https://openuserjs.org/install/ElLutzo/Show_Rottentomatoes_meter)  
+[**Click here for install**](https://openuserjs.org/install/ElLutzo/Show_Rottentomatoes_meter.user.js)  
 Tested with Firefox/**Greasemonkey 4** and Chrome/**Tampermonkey**.
 
 Supported sites and products:
