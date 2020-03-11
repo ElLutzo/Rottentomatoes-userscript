@@ -1,22 +1,22 @@
-//==UserScript==
-//@name        Show Rottentomatoes meter
-//@description Show Rotten Tomatoes score on save.tv video archive pages
-//@namespace   ElLutzo
-//@updateURL   https://openuserjs.org/meta/ElLutzo/Show_Rottentomatoes_meter.meta.js
-//@grant       GM_xmlhttpRequest
-//@grant       GM_setValue
-//@grant       GM_getValue
-//@grant       unsafeWindow
-//@grant       GM.xmlHttpRequest
-//@grant       GM.setValue
-//@grant       GM.getValue
-//@require     http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-//@require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
-//@license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
-//@version     1
-//@connect     www.rottentomatoes.com
-//@include     https://www.save.tv/*
-//==/UserScript==
+// ==UserScript==
+// @name        Show Rottentomatoes meter
+// @description Show Rotten Tomatoes score on save.tv video archive pages
+// @namespace   ElLutzo
+// @updateURL   https://openuserjs.org/meta/ElLutzo/Show_Rottentomatoes_meter.meta.js
+// @grant       GM_xmlhttpRequest
+// @grant       GM_setValue
+// @grant       GM_getValue
+// @grant       unsafeWindow
+// @grant       GM.xmlHttpRequest
+// @grant       GM.setValue
+// @grant       GM.getValue
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+// @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
+// @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
+// @version     1
+// @connect     www.rottentomatoes.com
+// @include     https://www.save.tv/*
+// ==/UserScript==
 
 var baseURL = "https://www.rottentomatoes.com";
 var baseURL_search = baseURL + "/api/private/v2.0/search/?limit=100&q={query}&t={type}";
@@ -160,7 +160,8 @@ async function loadMeter(query, type, year) {
 
         response.time = (new Date()).toJSON();
 
-        // Chrome fix: Otherwise JSON.stringify(cache) omits responseText
+        // Chrome fix: Otherwise JSON.stringify(cache) omits
+        // responseText
         var newobj = {};
         for(var key in response) {
           newobj[key] = response[key];
