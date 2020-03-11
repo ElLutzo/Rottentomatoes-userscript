@@ -1,25 +1,24 @@
-// ==UserScript==
-// @name        Show Rottentomatoes meter
-// @description Show Rotten Tomatoes score on save.tv video archive pages
-// @namespace   ElLutzo
-// @updateURL   https://openuserjs.org/meta/ElLutzo/Show_Rottentomatoes_meter.meta.js
-// @grant       GM_xmlhttpRequest
-// @grant       GM_setValue
-// @grant       GM_getValue
-// @grant       unsafeWindow
-// @grant       GM.xmlHttpRequest
-// @grant       GM.setValue
-// @grant       GM.getValue
-// @require     http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-// @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
-// @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
-// @version     1
-// @connect     www.rottentomatoes.com
-// @include     https://www.save.tv/*
-// ==/UserScript==
+//==UserScript==
+//@name        Show Rottentomatoes meter
+//@description Show Rotten Tomatoes score on save.tv video archive pages
+//@namespace   ElLutzo
+//@updateURL   https://openuserjs.org/meta/ElLutzo/Show_Rottentomatoes_meter.meta.js
+//@grant       GM_xmlhttpRequest
+//@grant       GM_setValue
+//@grant       GM_getValue
+//@grant       unsafeWindow
+//@grant       GM.xmlHttpRequest
+//@grant       GM.setValue
+//@grant       GM.getValue
+//@require     http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+//@require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
+//@license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
+//@version     1
+//@connect     www.rottentomatoes.com
+//@include     https://www.save.tv/*
+//==/UserScript==
 
-
-var baseURL = "https://www.rottentomatoes.com"
+var baseURL = "https://www.rottentomatoes.com";
 var baseURL_search = baseURL + "/api/private/v2.0/search/?limit=100&q={query}&t={type}";
 var baseURL_openTab = baseURL + "/search/?search={query}";
 const cacheExpireAfterHours = 4;
@@ -119,15 +118,14 @@ function meterBar(data) {
   }
 
   return '<div style="width:100px; overflow: hidden;height: 20px;background-color: '+bgColor+';color: ' + color + ';text-align:center; border-radius: 4px;box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);">' +
-    '<div style="width:'+ data.meterScore +'%; background-color: ' + barColor + '; color: ' + color + '; font-size:14px; font-weight:bold; text-align:center; float:left; height: 100%;line-height: 20px;box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);transition: width 0.6s ease;">' + textInside + '</div>' + textAfter +'</div>';
+  '<div style="width:'+ data.meterScore +'%; background-color: ' + barColor + '; color: ' + color + '; font-size:14px; font-weight:bold; text-align:center; float:left; height: 100%;line-height: 20px;box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);transition: width 0.6s ease;">' + textInside + '</div>' + textAfter +'</div>';
 }
 
 var current = {
-  type : null,
-  query : null,
-  year : null
+    type : null,
+    query : null,
+    year : null
 };
-
 
 async function loadMeter(query, type, year) {
   // Load data from rotten tomatoes search API or from cache
@@ -136,7 +134,7 @@ async function loadMeter(query, type, year) {
   current.query = query;
   current.year = year;
 
-  let rottenType = type==="movie"?"movie":"tvSeries"
+  let rottenType = type==="movie"?"movie":"tvSeries";
 
   let url = baseURL_search.replace("{query}", encodeURIComponent(query)).replace("{type}", encodeURIComponent(rottenType));
 
@@ -169,9 +167,7 @@ async function loadMeter(query, type, year) {
         }
         newobj.responseText = response.responseText;
 
-
         cache[url] = newobj;
-
 
         GM.setValue("cache",JSON.stringify(cache));
 
@@ -255,10 +251,6 @@ function handleResponse(response) {
   }
 }
 
-
-
-
-
 function showMeter(arr, time) {
   // Show a small box in the right lower corner
   $("#mcdiv321rotten").remove();
@@ -281,7 +273,6 @@ function showMeter(arr, time) {
     zIndex: "5010001",
     fontFamily : "Helvetica,Arial,sans-serif"
   });
-
 
   // First result
   $('<div class="firstResult"><a style="font-size:small; color:#136CB2; " href="' + baseURL + arr[0].url + '">' + arr[0].name + " (" + arr[0].year + ")</a>" + meterBar(arr[0]) +  '</div>').appendTo(main);
@@ -307,24 +298,19 @@ function showMeter(arr, time) {
 
 }
 
-
-
-
-
 var Always = () => true;
 var sites = {
-  'save.tv' : {
-    host : ['save.tv'],
-    condition : () => document.location.pathname.startsWith("/STV/M/obj/archive/"),
-    products : [
-    {
+    'save.tv' : {
+      host : ['save.tv'],
       condition : () => document.location.pathname.startsWith("/STV/M/obj/archive/"),
-      type : 'movie',
-      data : () => document.querySelector("span[data-bind='text:OrigTitle']").textContent
-    }]
-  },
+      products : [
+        {
+          condition : () => document.location.pathname.startsWith("/STV/M/obj/archive/"),
+          type : 'movie',
+          data : () => document.querySelector("span[data-bind='text:OrigTitle']").textContent
+        }]
+    },
 };
-
 
 function main() {
   var dataFound = false;
@@ -359,8 +345,6 @@ function main() {
   }
   return dataFound;
 }
-
-
 
 (function() {
 
