@@ -135,9 +135,7 @@ async function loadMeter(query, type, year) {
   current.year = year;
 
   let rottenType = type==="movie"?"movie":"tvSeries";
-
   let url = baseURL_search.replace("{query}", encodeURIComponent(query)).replace("{type}", encodeURIComponent(rottenType));
-
   let cache = JSON.parse(await GM.getValue("cache","{}"));
 
   // Delete cached values, that are expired
