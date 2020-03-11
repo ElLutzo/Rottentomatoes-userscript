@@ -306,8 +306,21 @@ var sites = {
         {
           condition : () => document.location.pathname.startsWith("/STV/M/obj/archive/"),
           type : 'movie',
-          data : () => document.querySelector("span[data-bind='text:OrigTitle']").textContent
-        }]
+          data : function() {
+            var title = null;
+            if(document.querySelector("span[data-bind='text:OrigTitle']")) {
+              title = document.querySelector("span[data-bind='text:OrigTitle']").textContent;
+            } else {
+              title = document.querySelector("h2[data-bind='text:Title']").textContent;
+            }        
+            var year = null;
+            if(document.querySelector("span[data-bind='text:ProductionYear']")) {
+              year = parseInt(document.querySelector("span[data-bind='text:ProductionYear']").textContent);
+            }
+            return [title, year];
+          }
+        }
+      ]
     },
 };
 
